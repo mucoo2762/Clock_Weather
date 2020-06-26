@@ -1,26 +1,81 @@
-import React from 'react';
+import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
+import Clock from './Clock.js';
+import Greeting from './Greeting.js';
+import TodoList from './TodoList.js';
+import TodoService from './TodoService.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component{
+  state = {
+    addTodo: false
+  }
+
+
+  componentDidMount(){
+    
+  }
+
+  
+  onSubmittst = (text) => {
+    if(text !== null){
+      this.setState({
+        addTodo: true
+      });
+    };
+  };
+
+
+  getLSTodoList = () => {
+    const todoListArr = JSON.parse(localStorage.getItem("todo_list"));
+    let todoLiElem = "";
+    
+    if(todoListArr !== null){
+      todoLiElem = todoListArr.map((todo) => {
+        return <TodoList todo={todo}/>        
+      });
+    }
+
+    return todoLiElem;
+  };
+
+  addLSTodoList = () => {
+    let addResult = "";
+    if(this.state.addTodo){
+      addResult = this.getLSTodoList();
+
+      this.setState({
+        addTodo: false
+      });
+    }
+    return addResult; 
+  }
+
+
+  render(){
+    return(
+      <div className="mainBodyDiv">
+        <div className="clockDiv">
+          <Clock />
+        </div>
+        <Greeting />
+        <TodoService onSubmit={this.onSubmittst}/>
+        <ul className="todoListUl">
+          {this.getLSTodoList()}
+          {this.addLSTodoList()}
+        </ul>
+      </div>
+    );
+  };
 }
+
+
+
+
+
+
+
+
 
 export default App;
