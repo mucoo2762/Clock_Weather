@@ -39,8 +39,8 @@ class Clock extends Component{
         return(
             <div className="clockDiv">
                 <span className="clockSpan clockFirstElem">{this.state.clock}</span>
-                <span className="clocDaySpan">{`${this.state.month}월 ${this.state.day}일`}</span>
-                <span className="clocDaySpan clockLastElem">{this.state.weekStr}</span>
+                <span className="clockDaySpan">{`${this.state.month}월 ${this.state.day}일`}</span>
+                <span className="clockDaySpan clockLastElem">{this.state.weekStr}</span>
             </div>
         );
     };

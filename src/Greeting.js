@@ -67,6 +67,7 @@ class Greeting extends Component{
             <span className={this.state.isGreeting === true ? "showCls greetingSpan" : "hiddenCls greetingSpan"}>
                 {this.getGreetingText()} <br></br> {this.state.greetingBackStr}
             </span>
+            <span className="guideDownList">Scroll down to see the TodoList.<br/><img src="images/down_2.png" alt="" className="arrow_img_ScrollDown"/></span>
         </div>
     ); 
   };

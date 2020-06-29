@@ -59,9 +59,9 @@ class App extends Component{
     return(
       <div className="mainBodyDiv">
         <div className="welcomeDiv">
+          <img src="/images/yellow_back.PNG" className="clockBgImg"/>
           <Clock />
-          <Greeting />
-          <span className="guideDownList">Scroll down to see the TodoList.<br/><img src="images/down_2.png" alt="" className="arrow_img_ScrollDown"/></span>
+          <Greeting />          
         </div>
         <div className="todoDiv">
           <Weather />
