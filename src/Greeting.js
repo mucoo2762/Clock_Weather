@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import App from './App.js';
 
 // ===============================================================================
 
@@ -20,10 +18,13 @@ class Greeting extends Component{
     const userName = localStorage.getItem("clock_user_name");
 
     if(userName === null){
-        this.state.isGreeting = false;
-        console.log(this.state.isGreeting);
+        this.setState({
+            isGreeting: false
+        });
     }else{
-        this.state.isGreeting = true;
+        this.setState({
+            isGreeting: true
+        });
         this.paintGreeting(userName);
     }
   };

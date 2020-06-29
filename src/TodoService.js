@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import App from './App.js';
 
 
 // ===============================================================================
@@ -20,7 +18,12 @@ class TodoService extends Component{
     handlerSubmit = (event) => {
         event.preventDefault();
 
-        const id_cnt = localStorage.getItem("todo_id_cnt");
+        let id_cnt = localStorage.getItem("todo_id_cnt");
+        if(id_cnt === null || id_cnt === "NaN") {
+            localStorage.setItem("todo_id_cnt", 1); 
+            id_cnt = 1;
+        }
+
         let todoArr = JSON.parse(localStorage.getItem("todo_list"));
         todoArr = todoArr === null ? [] : todoArr;
         todoArr.push({
@@ -31,7 +34,9 @@ class TodoService extends Component{
         localStorage.setItem("todo_list", JSON.stringify(todoArr));
         localStorage.setItem("todo_id_cnt", parseInt(id_cnt) + 1);
 
-        this.state.inputValue = "";
+        this.setState({
+            inputValue: ""
+        });
         this.props.onSubmit(this.state.inputValue);
     }
 

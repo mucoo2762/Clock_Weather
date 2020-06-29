@@ -3,14 +3,10 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Weather from './Weather';
-import BgImg from './BgImg';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Weather />
-    <App />
-    <BgImg />
+    <App></App>
   </React.StrictMode>,
   document.getElementById('root')
 );

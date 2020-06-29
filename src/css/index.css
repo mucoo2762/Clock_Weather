@@ -17,7 +17,7 @@ code {
 
 
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from{
       opacity: 0;
   }
@@ -34,4 +34,4 @@ code {
   height: 100%;
   z-index: -1;
   animation: fadeIn 0.5s linear;
-}
+} */

@@ -13,11 +13,15 @@ class TodoList extends Component{
 
     componentDidMount(){
         const todoText = this.props.todo.text;
+        const todoID = this.props.todo.id;
         const id_cnt = localStorage.getItem("todo_id_cnt");
-        const todoId = id_cnt === 0 ? 1 : id_cnt;
+
+        if(id_cnt === null || id_cnt === "NaN"){
+            localStorage.setItem("todo_id_cnt", 1);
+        }
 
         this.setState({
-            id: todoId,
+            id: todoID,
             text: todoText
         });
     }
@@ -25,12 +29,13 @@ class TodoList extends Component{
     handlerDeleteBtn = (event) => {
         const parentUl = event.target.parentNode.parentNode;
         const removeTarget = event.target.parentNode;
+        console.log(removeTarget);
 
         parentUl.removeChild(removeTarget);
         const LS_TODO_LIST = JSON.parse(localStorage.getItem("todo_list"));
-        const LS_ID_CNT = JSON.parse(localStorage.getItem("todo_id_cnt"));
         const arrForLSSave = LS_TODO_LIST.filter((todo) => { 
-            return (todo.id !== parseInt(removeTarget.id)) && (todo.text !== event.target.nextSibling.innerText); 
+            console.log(todo.id, parseInt(removeTarget.id), todo.text, event.target.nextSibling.innerText);
+            return (todo.id !== parseInt(removeTarget.id)) || (todo.text !== event.target.nextSibling.innerText); 
         });
         localStorage.setItem("todo_list", JSON.stringify(arrForLSSave));
 
